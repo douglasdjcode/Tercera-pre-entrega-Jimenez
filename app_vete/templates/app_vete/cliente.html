@@ -1,0 +1,51 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Clientes 
+{% endblock %} 
+
+{% block content %}
+
+    <div class ="container">
+
+      <h2 class="text-center mt-2">Buscar Cliente</h2>
+      <!-- Formulario de búsqueda -->
+      <div class="d-flex flex-column align-items-center mb-2">
+          <form action="" method="GET">
+              <input type="text" name="q" placeholder="Buscar..." required>
+              <button type="submit">Buscar</button>
+          </form>
+      </div>
+      <a href="{% url 'cliente-form' %}" class="btn btn-primary">Crear cliente</a>
+
+
+
+        <table class="table">
+            <thead>
+              <tr table class="table-primary"> 
+        
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for clientes in cliente %}
+              <tr table class="table-success">
+                <td>{{ clientes.nombre }}</td>
+                <td>{{ clientes.telefono }}</td>
+                <td>{{ clientes.email }}</td>
+              </tr>
+              <tr>
+                {% endfor %}
+            </tbody>
+          </table>
+
+    
+    </div>
+
+
+
+
+{% endblock %}
