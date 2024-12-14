@@ -2,23 +2,24 @@
 {% load static %}
 
 {% block title %} 
-Pet Vet | mascotas Form 
+Pet Vet | Editar Mascota
 {% endblock %} 
 
 {% block content %}
 
+
 <div class="container my-4">
     <div class="row justify-content-center">
         <div class="col-4">
+
             <form method="post">
                 {% csrf_token %}
-                {{ producto_form.as_p }}
-                
 
+                {{ mascota_form.as_p }}
 
-                    <button type="submit" class="btn btn-primary">Crear</button>
-                </div>
+                <button class="nav-link btn btn-primary" type="submit">Editar</button>
             </form>
+
         </div>
     </div>
 </div>

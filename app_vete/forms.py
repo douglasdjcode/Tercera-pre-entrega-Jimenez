@@ -20,6 +20,7 @@ class ProductoFormulario(forms.Form):
     nombre = forms.CharField(max_length=100)
     precio = forms.FloatField()
     categoria = forms.CharField(max_length=50)
+    descipcion = forms.TextInput()
 
 class SucursalFormulario(forms.Form):
     nombre = forms.CharField(max_length=100)

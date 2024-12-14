@@ -10,7 +10,7 @@ Pet Vet | Productos
 
 <div class ="container">
 
-  <h2 class="text-center mt-2">Buscar mascota</h2>
+  <h2 class="text-center mt-2">Buscar Producto</h2>
   <!-- Formulario de búsqueda -->
   <div class="d-flex flex-column align-items-center mb-2">
       <form action="" method="GET">
@@ -18,6 +18,7 @@ Pet Vet | Productos
           <button type="submit">Buscar</button>
       </form>
   </div>
+  
   
   <a href="{% url 'producto-form' %}" class="btn btn-primary">Crear Prodcuto</a>
 
@@ -30,6 +31,7 @@ Pet Vet | Productos
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -38,6 +40,12 @@ Pet Vet | Productos
                 <td>{{ productos.nombre }}</td>
                 <td>{{ productos.precio }}</td>
                 <td>{{ productos.categoria }}</td>
+                <td>
+
+                <a class="btn btn-danger" href = "{% url 'delete-producto' productos.id %}">Eliminar</a>
+                <a class="btn btn-warning" href = "{% url 'editar-producto' productos.id %}">Editar</a>
+
+                </td>
               </tr>
               <tr>
                 {% endfor %}

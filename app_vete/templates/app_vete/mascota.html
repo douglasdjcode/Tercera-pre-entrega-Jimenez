@@ -28,6 +28,7 @@ Pet Vet | Mascotas
                 <th scope="col">Especie</th>
                 <th scope="col">Raza</th>
                 <th scope="col">Edad</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +37,12 @@ Pet Vet | Mascotas
                 <td>{{ mascotas.especie }}</td>
                 <td>{{ mascotas.raza }}</td>
                 <td>{{ mascotas.edad }}</td>
+                <td>
+
+                  <a class="btn btn-danger" href = "{% url 'delete-mascota' mascotas.id %}">Eliminar</a>
+                  <a class="btn btn-warning" href = "{% url 'editar-mascota' mascotas.id %}">Editar</a>
+
+                </td>
               </tr>
               <tr>
                 {% endfor %}

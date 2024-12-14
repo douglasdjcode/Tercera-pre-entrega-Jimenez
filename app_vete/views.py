@@ -124,3 +124,111 @@ def formulario_sucursal(request):
 
 def registro_exitoso(request):
     return render(request,"app_vete/forms/registro-exitoso.html")
+
+
+def eliminar_producto(request, id):
+
+    producto = Producto.objects.get(id=id)
+    producto.delete()
+    return redirect("producto")
+
+def eliminar_mascota(request, id):
+
+    mascota = Mascota.objects.get(id=id)
+    mascota.delete()
+    return redirect("mascota")
+
+def eliminar_cliente(request, id):
+
+    cliente = Cliente.objects.get(id=id)
+    cliente.delete()
+    return redirect("cliente")
+
+def eliminar_sucursal(request, id):
+
+    sucursal = Sucursal.objects.get(id=id)
+    sucursal.delete()
+    return redirect("sucursal")
+
+def editar_sucursal(request, id):
+
+    sucursal = Sucursal.objects.get(id=id)
+
+    if request.method == "POST":
+        sucursal_form = SucursalFormulario(request.POST)
+        if sucursal_form.is_valid():
+            info_limpia = sucursal_form.cleaned_data
+            sucursal.nombre = info_limpia["nombre"]
+            sucursal.direccion = info_limpia["direccion"]
+            sucursal.telefono = info_limpia["telefono"]
+            sucursal.save()
+        return redirect("sucursal")
+
+    else:
+        sucursal = Sucursal.objects.get(id=id)
+        sucursal_form = SucursalFormulario(initial={"nombre": sucursal.nombre, "direccion": sucursal.direccion , "telefono": sucursal.telefono})
+
+    return render(request, "app_vete/forms/editar-sucursal.html", {"sucursal_form": sucursal_form})
+
+
+def editar_mascota(request, id):
+
+    mascota = Mascota.objects.get(id=id)
+
+    if request.method == "POST":
+        mascota_form = MascotasFormulario(request.POST)
+        if mascota_form.is_valid():
+            info_limpia = mascota_form.cleaned_data
+            mascota.especie = info_limpia["especie"]
+            mascota.raza = info_limpia["raza"]
+            mascota.edad = info_limpia["edad"]
+            mascota.save()
+        return redirect("mascota")
+
+    else:
+        mascota = Mascota.objects.get(id=id)
+        mascota_form = MascotasFormulario(initial={"especie": mascota.especie, "raza": mascota.raza , "edad": mascota.edad})
+
+    return render(request, "app_vete/forms/editar-mascota.html", {"mascota_form": mascota_form})
+
+
+def editar_cliente(request, id):
+
+    cliente = Cliente.objects.get(id=id)
+
+    if request.method == "POST":
+        cliente_form = ClienteFormulario(request.POST)
+        if cliente_form.is_valid():
+            info_limpia = cliente_form.cleaned_data
+            cliente.nombre = info_limpia["nombre"]
+            cliente.telefono = info_limpia["telefono"]
+            cliente.email = info_limpia["email"]
+            cliente.save()
+        return redirect("cliente")
+
+    else:
+        cliente = Cliente.objects.get(id=id)
+        cliente_form = ClienteFormulario(initial={"nombre": cliente.nombre, "telefono": cliente.telefono , "email": cliente.email})
+
+    return render(request, "app_vete/forms/editar-cliente.html", {"cliente_form": cliente_form})
+
+
+def editar_producto(request, id):
+
+    producto = Producto.objects.get(id=id)
+
+    if request.method == "POST":
+        producto_form = ProductoFormulario(request.POST)
+        if producto_form.is_valid():
+            info_limpia = producto_form.cleaned_data
+            producto.nombre = info_limpia["nombre"]
+            producto.precio = info_limpia["precio"]
+            producto.categoria = info_limpia["categoria"]
+            producto.save()
+        return redirect("producto")
+
+    else:
+        producto = Producto.objects.get(id=id)
+        producto_form = ProductoFormulario(initial={"nombre": producto.nombre, "precio": producto.precio , "categoria": producto.categoria})
+
+    return render(request, "app_vete/forms/editar-producto.html", {"producto_form": producto_form})

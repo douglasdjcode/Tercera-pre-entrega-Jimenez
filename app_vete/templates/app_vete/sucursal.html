@@ -29,6 +29,7 @@ Pet Vet | Sucursales
             <th scope="col">Nombre</th>
             <th scope="col">Direccion</th>
             <th scope="col">Telefono</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +38,12 @@ Pet Vet | Sucursales
             <td>{{ sucursales.nombre }}</td>
             <td>{{ sucursales.direccion }}</td>
             <td>{{ sucursales.telefono }}</td>
+            <td>
+
+              <a class="btn btn-danger" href = "{% url 'delete-sucursal' sucursales.id %}">Eliminar</a>
+              <a class="btn btn-warning" href = "{% url 'editar-sucursal' sucursales.id %}">Editar</a>
+
+            </td>
           </tr>
           <tr>
             {% endfor %}
